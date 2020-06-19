@@ -1,6 +1,8 @@
 import { chromium } from "playwright";
 (async () => {
-  const browser = await chromium.launch();
-  // Create pages, interact with UI elements, assert values
-  await browser.close();
+    const browser = await chromium.launch();
+    const page = await browser.newPage();
+    await page.goto("http://whatsmyuseragent.org/");
+    await page.screenshot({ path: `example.png` });
+    await browser.close();
 })();
