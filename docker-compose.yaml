@@ -1,0 +1,10 @@
+version: "3"
+services:
+  cypress-tests:
+    build:
+      context: cypress
+      dockerfile: Dockerfile
+    env_file:
+      - cypress/dev.env
+    volumes:
+      - ./cypress:/app/
