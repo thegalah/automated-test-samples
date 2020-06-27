@@ -1,3 +1,4 @@
 {
-  "projectId": "n2kiko"
+  "projectId": "n2kiko",
+  "testFiles": "**/*.spec.ts"
 }
