@@ -5,6 +5,18 @@ services:
       context: cypress
       dockerfile: Dockerfile
     env_file:
-      - cypress/dev.env
+      - ./cypress/dev.env
     volumes:
       - ./cypress:/app/
+      - cypress_node_modules:/app/node_modules
+  playwright-tests:
+    build:
+      context: playwright
+      dockerfile: Dockerfile
+    ipc: host
+    volumes:
+      - ./playwright:/app/
+      - playwright_node_modules:/app/node_modules
+volumes:
+  cypress_node_modules:
+  playwright_node_modules:
