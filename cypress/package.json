@@ -15,7 +15,7 @@
         "typescript": "^3.9.5"
     },
     "scripts": {
-        "start": "cypress open",
+        "start": "cypress run --headless --browser chrome",
         "prettier": "prettier --write \"{src,web}/**/*.{js,jsx,ts,tsx}\" \"*.{js,json,md,yml,yaml}\""
     }
 }

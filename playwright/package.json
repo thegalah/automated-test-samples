@@ -4,18 +4,19 @@
     "repository": "https://github.com/thegalah/automated-test-samples.git",
     "author": "Matthew Duong <thegalah@gmail.com>",
     "license": "MIT",
-    "devDependencies": {
-        "nodemon": "^2.0.4",
-        "playwright": "^1.1.1",
-        "prettier": "2.0.5",
-        "ts-node": "^8.10.2"
-    },
     "dependencies": {
+        "@types/node": "^14.0.14",
+        "env-cmd": "^10.1.0",
+        "ffmpeg-static": "^4.2.5",
+        "playwright": "^1.1.1",
+        "playwright-core": "^1.1.1",
+        "playwright-video": "^2.2.0",
+        "prettier": "2.0.5",
+        "ts-node": "^8.10.2",
         "typescript": "^3.9.5"
     },
     "scripts": {
-        "start": "tsc && node dist/index.js",
-        "dev": "nodemon --watch 'src/**/*.ts' --exec 'ts-node' src/index.ts",
+        "start": "tsc && env-cmd -f ./dev.env node dist/Startup.js",
         "prettier": "prettier --write \"{src,web}/**/*.{js,jsx,ts,tsx}\" \"*.{js,json,md,yml,yaml}\""
     }
 }
