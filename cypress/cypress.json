@@ -1,5 +1,0 @@
-{
-  "chromeWebSecurity": false,
-  "projectId": "n2kiko",
-  "testFiles": "**/*.spec.ts"
-}

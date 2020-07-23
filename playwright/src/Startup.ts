@@ -2,7 +2,8 @@ import * as ffmpeg from "ffmpeg-static";
 import * as fs from "fs";
 import AbstractTest from "./Tests/AbstractTest";
 import Constants from "./Constants";
-import LoginTest from "./Tests/Mysignins/LoginTest";
+import MySigninsLoginTest from "./Tests/Mysignins/MySigninsLoginTest";
+import MyStaffLoginTest from "./Tests/MyStaff/MyStaffLoginTest";
 process.env.FFMPEG_PATH = require("ffmpeg-static");
 
 process.on("unhandledRejection", (err) => {
@@ -18,7 +19,7 @@ const makeFolder = (folder: string) => {
 
 makeFolder(Constants.TestOutputPath);
 
-const tests: Array<AbstractTest> = [LoginTest];
+const tests: Array<AbstractTest> = [MySigninsLoginTest, MyStaffLoginTest];
 console.log(`Running ${tests.length} tests`);
 
 tests.forEach(async (test) => {
