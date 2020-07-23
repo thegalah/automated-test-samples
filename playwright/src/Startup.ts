@@ -4,6 +4,7 @@ import AbstractTest from "./Tests/AbstractTest";
 import Constants from "./Constants";
 import MySigninsLoginTest from "./Tests/Mysignins/MySigninsLoginTest";
 import MyStaffLoginTest from "./Tests/MyStaff/MyStaffLoginTest";
+import "source-map-support/register";
 process.env.FFMPEG_PATH = require("ffmpeg-static");
 
 process.on("unhandledRejection", (err) => {
@@ -19,7 +20,7 @@ const makeFolder = (folder: string) => {
 
 makeFolder(Constants.TestOutputPath);
 
-const tests: Array<AbstractTest> = [MySigninsLoginTest, MyStaffLoginTest];
+const tests: Array<AbstractTest> = [MyStaffLoginTest];
 console.log(`Running ${tests.length} tests`);
 
 tests.forEach(async (test) => {
