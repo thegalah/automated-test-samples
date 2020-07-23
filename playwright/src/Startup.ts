@@ -20,7 +20,7 @@ const makeFolder = (folder: string) => {
 
 makeFolder(Constants.TestOutputPath);
 
-const tests: Array<AbstractTest> = [MyStaffLoginTest];
+const tests: Array<AbstractTest> = [MySigninsLoginTest, MyStaffLoginTest];
 console.log(`Running ${tests.length} tests`);
 
 tests.forEach(async (test) => {
