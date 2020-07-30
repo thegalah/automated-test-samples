@@ -2,6 +2,7 @@ import * as fs from "fs";
 import AbstractTest from "./Tests/AbstractTest";
 import Constants from "./Constants";
 import MyAccountTest from "./Tests/MyAccount/MyAccountTest";
+import MyApplicationsTest from "./Tests/MyApplications/MyApplicationsTest";
 import MySigninsLoginTest from "./Tests/Mysignins/MySigninsLoginTest";
 import MyStaffLoginTest from "./Tests/MyStaff/MyStaffLoginTest";
 import "source-map-support/register";
@@ -25,6 +26,7 @@ const tests: Array<AbstractTest> = [];
 tests.push(MySigninsLoginTest);
 tests.push(MyStaffLoginTest);
 tests.push(MyAccountTest);
+tests.push(MyApplicationsTest);
 
 console.log(`Running ${tests.length} tests`);
 

@@ -7,4 +7,6 @@ export default class Environment {
 
     public static readonly MyStaffAccountEmail = process.env["MYSTAFF_ACCOUNT_EMAIL"] || "";
     public static readonly MyStaffAccountPassword = process.env["MYSTAFF_ACCOUNT_PASSWORD"] || "";
+    public static readonly MyApplicationsAccountEmail = process.env["MYAPPLICATIONS_ACCOUNT_EMAIL"] || "";
+    public static readonly MyApplicationsAccountPassword = process.env["MYAPPLICATIONS_ACCOUNT_PASSWORD"] || "";
 }
