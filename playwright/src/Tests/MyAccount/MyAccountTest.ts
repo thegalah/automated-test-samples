@@ -2,26 +2,29 @@ import AbstractTest from "../AbstractTest";
 import Environment from "../../Environment";
 import { Page } from "playwright";
 
-const testAccountEmail = Environment.MyStaffAccountEmail;
-const testAccountPassword = Environment.MyStaffAccountPassword;
+const testAccountEmail = Environment.MySigninsAccountEmail;
+const testAccountPassword = Environment.MySigninsAccountPassword;
 
-const mySigninsUrl = "https://mystaff.microsoft.com/";
+const mySigninsUrl = "https://myaccount.microsoft.com/";
 const emailInputSelector = "input[type=email][name=loginfmt]";
 const emailSubmitButtonSelector = "input[type=submit][value='Next']";
 const passwordInputSelector = "input[type=password][name=passwd]";
 const passwordSubmitButtonSelector = "input[type=submit][value='Sign in']";
+const staySignedInButtonSelector = "input[type=submit][value='Yes']";
 
-class MyStaffLoginTest extends AbstractTest {
-    public readonly Name = "is able to login to MyStaff with a valid account";
+class MyAccountTest extends AbstractTest {
+    public readonly Name =
+        "is able to login to MyAccount with a valid account, view devices, and toggle a device state to see more details";
     protected readonly test = async (page: Page) => {
-        await this.openMyStaffPage(page);
+        await this.openMyAccountPage(page);
         await this.fillEmailInput(page);
         await this.submitEmail(page);
         await this.fillPasswordInput(page);
         await this.submitPassword(page);
+        await this.clickStaySignedIn(page);
     };
 
-    private openMyStaffPage = async (page: Page) => {
+    private openMyAccountPage = async (page: Page) => {
         await page.goto(mySigninsUrl);
         await page.waitForSelector(emailInputSelector, { timeout: 5000, state: "visible" });
         await page.waitForTimeout(1000);
@@ -47,8 +50,14 @@ class MyStaffLoginTest extends AbstractTest {
 
     private submitPassword = async (page: Page) => {
         await page.mainFrame().click(passwordSubmitButtonSelector);
-        await page.waitForTimeout(5000);
+        await page.waitForTimeout(1000);
         await page.screenshot({ path: `${this.ArtifactsPath}/submitPassword.png` });
     };
+
+    private clickStaySignedIn = async (page: Page) => {
+        await page.mainFrame().click(staySignedInButtonSelector);
+        await page.waitForTimeout(1000);
+        await page.screenshot({ path: `${this.ArtifactsPath}/clickStaySignedIn.png` });
+    };
 }
-export default new MyStaffLoginTest();
+export default new MyAccountTest();

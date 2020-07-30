@@ -1,5 +1,4 @@
 import AbstractTest from "../AbstractTest";
-import Constants from "../../Constants";
 import Environment from "../../Environment";
 import { Page } from "playwright";
 
@@ -28,7 +27,7 @@ class MySigninsLoginTest extends AbstractTest {
         await page.goto(mySigninsUrl);
         await page.waitForSelector(emailInputSelector, { timeout: 5000, state: "visible" });
         await page.waitForTimeout(1000);
-        await page.screenshot({ path: `${this.ArtifactsPath}/openMySigninsPage.png` });
+        await page.screenshot({ path: `${this.ArtifactsPath}/openLoginPage.png` });
     };
 
     private fillEmailInput = async (page: Page) => {
