@@ -21,7 +21,6 @@ class MyAccountTest extends AbstractTest {
         await this.submitEmail(page);
         await this.fillPasswordInput(page);
         await this.submitPassword(page);
-        await this.clickStaySignedIn(page);
     };
 
     private openMyAccountPage = async (page: Page) => {
@@ -52,12 +51,6 @@ class MyAccountTest extends AbstractTest {
         await page.mainFrame().click(passwordSubmitButtonSelector);
         await page.waitForTimeout(1000);
         await page.screenshot({ path: `${this.ArtifactsPath}/submitPassword.png` });
-    };
-
-    private clickStaySignedIn = async (page: Page) => {
-        await page.mainFrame().click(staySignedInButtonSelector);
-        await page.waitForTimeout(1000);
-        await page.screenshot({ path: `${this.ArtifactsPath}/clickStaySignedIn.png` });
     };
 }
 export default new MyAccountTest();
