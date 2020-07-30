@@ -10,7 +10,7 @@ const emailInputSelector = "input[type=email][name=loginfmt]";
 const emailSubmitButtonSelector = "input[type=submit][value='Next']";
 const passwordInputSelector = "input[type=password][name=passwd]";
 const passwordSubmitButtonSelector = "input[type=submit][value='Sign in']";
-const staySignedInButtonSelector = "input[type=submit][value='Yes']";
+const devicesNavigationSelector = "nav[role=navigation] div[name=Devices] > a[title=Devices]";
 
 class MyAccountTest extends AbstractTest {
     public readonly Name =
@@ -21,6 +21,7 @@ class MyAccountTest extends AbstractTest {
         await this.submitEmail(page);
         await this.fillPasswordInput(page);
         await this.submitPassword(page);
+        await this.clickDevicesNavigationButton(page);
     };
 
     private openMyAccountPage = async (page: Page) => {
@@ -51,6 +52,12 @@ class MyAccountTest extends AbstractTest {
         await page.mainFrame().click(passwordSubmitButtonSelector);
         await page.waitForTimeout(1000);
         await page.screenshot({ path: `${this.ArtifactsPath}/submitPassword.png` });
+    };
+    private clickDevicesNavigationButton = async (page: Page) => {
+        await page.waitForSelector(devicesNavigationSelector);
+        await page.mainFrame().click(devicesNavigationSelector);
+        await page.waitForTimeout(1000);
+        await page.screenshot({ path: `${this.ArtifactsPath}/clickDevicesNavigationButton.png` });
     };
 }
 export default new MyAccountTest();

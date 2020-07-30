@@ -1,6 +1,7 @@
 import Constants from "../Constants";
 import { chromium, Page } from "playwright";
 import { saveVideo } from "playwright-video";
+import { Utilities } from "../Utilities";
 
 export default abstract class AbstractTest {
     public get ArtifactsPath(): string {
@@ -22,10 +23,15 @@ export default abstract class AbstractTest {
             this.TestDuration = new Date().getTime() - start.getTime();
             return false;
         } finally {
+            await this.addVideoRecordingBuffer();
             browser.close();
         }
     };
 
     public abstract readonly Name: string;
     protected abstract test: (page: Page) => Promise<void>;
+
+    private addVideoRecordingBuffer = async () => {
+        await Utilities.Sleep(2000);
+    };
 }
