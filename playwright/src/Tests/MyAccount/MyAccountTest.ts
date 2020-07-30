@@ -11,6 +11,8 @@ const emailSubmitButtonSelector = "input[type=submit][value='Next']";
 const passwordInputSelector = "input[type=password][name=passwd]";
 const passwordSubmitButtonSelector = "input[type=submit][value='Sign in']";
 const devicesNavigationSelector = "nav[role=navigation] div[name=Devices] > a[title=Devices]";
+const firstDeviceCollapsibleSelector = "main[data-automation-id=devicesList] > div > div > div[role=button]:first-of-type";
+const firstDeviceExpandedDisableButtonSelector = "main[data-automation-id=devicesList] button[aria-label='Disable device']";
 
 class MyAccountTest extends AbstractTest {
     public readonly Name =
@@ -22,6 +24,8 @@ class MyAccountTest extends AbstractTest {
         await this.fillPasswordInput(page);
         await this.submitPassword(page);
         await this.clickDevicesNavigationButton(page);
+        await this.clickFirstDevice(page);
+        await this.clickDisableDeviceButton(page);
     };
 
     private openMyAccountPage = async (page: Page) => {
@@ -58,6 +62,20 @@ class MyAccountTest extends AbstractTest {
         await page.mainFrame().click(devicesNavigationSelector);
         await page.waitForTimeout(1000);
         await page.screenshot({ path: `${this.ArtifactsPath}/clickDevicesNavigationButton.png` });
+    };
+
+    private clickFirstDevice = async (page: Page) => {
+        await page.waitForSelector(firstDeviceCollapsibleSelector);
+        await page.mainFrame().click(firstDeviceCollapsibleSelector);
+        await page.waitForTimeout(1000);
+        await page.screenshot({ path: `${this.ArtifactsPath}/expandFirstDevice.png` });
+    };
+
+    private clickDisableDeviceButton = async (page: Page) => {
+        await page.waitForSelector(firstDeviceExpandedDisableButtonSelector);
+        await page.mainFrame().click(firstDeviceExpandedDisableButtonSelector);
+        await page.waitForTimeout(1000);
+        await page.screenshot({ path: `${this.ArtifactsPath}/clickDisableDeviceButton.png` });
     };
 }
 export default new MyAccountTest();

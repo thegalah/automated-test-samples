@@ -20,6 +20,8 @@ const makeFolder = (folder: string) => {
 
 makeFolder(Constants.TestOutputPath);
 
+const tests: Array<AbstractTest> = [];
+
 tests.push(MySigninsLoginTest);
 tests.push(MyStaffLoginTest);
 tests.push(MyAccountTest);
