@@ -2,16 +2,16 @@ import AbstractTest from "../AbstractTest";
 import Environment from "../../Environment";
 import { Page } from "playwright";
 
-const testAccountEmail = Environment.MyStaffAccountEmail;
-const testAccountPassword = Environment.MyStaffAccountPassword;
+const testAccountEmail = Environment.MyApplicationsAccountEmail;
+const testAccountPassword = Environment.MyApplicationsAccountPassword;
 
-const mySigninsUrl = "https://mystaff.microsoft.com/";
+const mySigninsUrl = "https://myapplications.microsoft.com/";
 const emailInputSelector = "input[type=email][name=loginfmt]";
 const emailSubmitButtonSelector = "input[type=submit][value='Next']";
 const passwordInputSelector = "input[type=password][name=passwd]";
 const passwordSubmitButtonSelector = "input[type=submit][value='Sign in']";
 
-class MyStaffLoginTest extends AbstractTest {
+class MyApplicationsTest extends AbstractTest {
     public readonly Name = "is able to login to MyStaff with a valid account";
     protected readonly test = async (page: Page) => {
         await this.openMyStaffPage(page);
@@ -51,4 +51,4 @@ class MyStaffLoginTest extends AbstractTest {
         await page.screenshot({ path: `${this.ArtifactsPath}/submitPassword.png` });
     };
 }
-export default new MyStaffLoginTest();
+export default new MyApplicationsTest();
