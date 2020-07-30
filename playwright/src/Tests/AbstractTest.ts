@@ -11,18 +11,18 @@ export default abstract class AbstractTest {
 
     public readonly RunTest = async (): Promise<boolean> => {
         const start = new Date();
+        const browser = await chromium.launch({ headless: true, args: ["--no-sandbox"] });
         try {
-            const browser = await chromium.launch({ headless: true, args: ["--no-sandbox"] });
             const page = await browser.newPage();
             await saveVideo(page, `${this.ArtifactsPath}/${this.constructor.name}-${this.Name}.mp4`);
             await this.test(page);
-            await browser.close();
             this.TestDuration = new Date().getTime() - start.getTime();
             return true;
         } catch (err) {
-            console.log(err);
             this.TestDuration = new Date().getTime() - start.getTime();
             return false;
+        } finally {
+            browser.close();
         }
     };
 
